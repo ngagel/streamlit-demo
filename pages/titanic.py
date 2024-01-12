@@ -28,23 +28,23 @@ def preprocess_data(pclass, sex, age, sibsp, parch, fare, embarked):
 
     # preprocessing pipeline 
     ### encode sex
-    le_sex = joblib.load("../encoder/le_sex.joblib")
+    le_sex = joblib.load("./encoder/le_sex.joblib")
     df["Sex"] = le_sex.transform(df["Sex"])
     ### encode embarked
-    le_embarked = joblib.load("../encoder/le_embarked.joblib")
+    le_embarked = joblib.load("./encoder/le_embarked.joblib")
     df["Embarked"] = le_embarked.transform(df["Embarked"])
     ### impute age
-    imp_age = joblib.load("../encoder/imp_age.joblib")
+    imp_age = joblib.load("./encoder/imp_age.joblib")
     df["Age"] = imp_age.transform(df[["Age"]]) 
     ### impute fare
-    imp_fare = joblib.load("../encoder/imp_fare.joblib")
+    imp_fare = joblib.load("./encoder/imp_fare.joblib")
     df["Fare"] = imp_fare.transform(df[["Fare"]])
 
     return df
 
 def predict(df):
     # predict label
-    clf = joblib.load("../model/decision_tree.joblib") 
+    clf = joblib.load("./model/decision_tree.joblib") 
     return clf.predict_proba(df)
 
 
